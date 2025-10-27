@@ -132,43 +132,45 @@ export default function CertificatesPage() {
           {/* Certificates Gallery */}
           <div className="mb-12 relative z-10">
             <h2 className="text-2xl font-semibold text-white mb-4 text-center drop-shadow-lg animate-fade-in-up delay-300">My Certificates</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {galleryImages.map((src, idx) => (
                 <div 
                   key={src} 
                   onMouseEnter={() => setHoveredImage(src)}
                   onMouseLeave={() => setHoveredImage(null)}
-                  className={`relative overflow-hidden rounded-2xl bg-white/95 backdrop-blur-md shadow-xl cursor-pointer transition-all duration-500 ease-out transform ${
+                  className={`relative overflow-hidden rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-md shadow-xl cursor-pointer transition-all duration-500 ease-out transform ${
                     hoveredImage === src 
-                      ? 'scale-110 shadow-2xl shadow-blue-500/30 ring-4 ring-blue-400/50' 
+                      ? 'scale-105 shadow-2xl shadow-blue-500/30 ring-4 ring-blue-400/50' 
                       : 'hover:scale-105 hover:shadow-2xl'
                   } animate-fade-in-up`}
                   style={{ animationDelay: `${idx * 100}ms` }}
                   onClick={() => openModal(src)}
                 >
-                  <Image
-                    src={src}
-                    alt={`Certificate ${idx + 1}`}
-                    width={500}
-                    height={350}
-                    className={`w-full h-36 sm:h-40 md:h-44 object-cover transition-transform duration-500 ${
-                      hoveredImage === src ? 'scale-110' : 'scale-100'
-                    }`}
-                  />
-                  {/* Hover Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 ${
-                    hoveredImage === src ? 'opacity-100' : ''
-                  }`}>
-                    <div className="absolute bottom-3 left-3 right-3 text-center">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 text-sm font-medium text-gray-800">
-                        Certificate {idx + 1}
+                  <div className="aspect-square relative">
+                    <Image
+                      src={src}
+                      alt={`Certificate ${idx + 1}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className={`object-cover transition-transform duration-500 ${
+                        hoveredImage === src ? 'scale-110' : 'scale-100'
+                      }`}
+                    />
+                    {/* Hover Overlay */}
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 sm:opacity-0 transition-opacity duration-300 ${
+                      hoveredImage === src ? 'sm:opacity-100' : ''
+                    }`}>
+                      <div className="absolute bottom-3 left-3 right-3 text-center">
+                        <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 text-sm font-medium text-gray-800">
+                          Certificate {idx + 1}
+                        </div>
                       </div>
                     </div>
+                    {/* Glow Effect */}
+                    {hoveredImage === src && (
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/20 to-cyan-400/20 animate-pulse"></div>
+                    )}
                   </div>
-                  {/* Glow Effect */}
-                  {hoveredImage === src && (
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/20 to-cyan-400/20 animate-pulse"></div>
-                  )}
                 </div>
               ))}
             </div>
