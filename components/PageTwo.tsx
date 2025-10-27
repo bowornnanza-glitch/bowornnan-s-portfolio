@@ -15,7 +15,7 @@ export default function PageTwo({ onBack }: PageTwoProps) {
     "I'm about to graduate",
     "from Mechai Bamboo School.",
     "I plan to continue my studies",
-    "in the Cybersecurity programme",
+    "in the Cybersecurity programmer",
     "at Harbour.Space @ UTCC",
     "because I want to become",
     "a cybersecurity professional",
